@@ -1,3 +1,7 @@
+
+document.addEventListener("DOMContentLoaded",function(event){
+const grid=GridStack.init();
+console.log("Gridstack initialized");
 const runbutton=document.getElementById("runButton");
 const area=document.getElementById("consoleArea");
 const editorarea=document.getElementById("editArea");
@@ -16,6 +20,7 @@ if(result===undefined){
 catch (error) {
  area.textContent+="Error"+error.message;
 }
+});
 });
 
 

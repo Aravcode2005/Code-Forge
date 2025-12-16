@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code Forge</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div id="header">
-<h1>Code-Forge</h1>
-</div>
-<div id="mainBody">
-<div id="editorArea">
-<textarea id="editArea" rows="10" placeholder="Write your code here...">
-console.log("Hello CodeForge!");
+    <link rel="stylesheet" href="style.css" />
+    <link href="gridstack.min.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="header">
+      <h1>Code-Forge</h1>
+    </div>
+
+    <div id="mainBody">
+      <div class="grid-stack">
+        Grid
+
+        <div class="grid-stack-item">
+          <div class="grid-stack-item-content">
+            <textarea
+              id="editArea"
+              rows="10"
+              placeholder="Write your code here..."
+            >
+            console.log("Hello CodeForge!");
             </textarea>
-<div id="consoleArea">Console</div>
-<button type="button" id="runButton" >Run</button>
-</div>
-<script src="main.js"></script>
-</body>
+          </div>
+        </div>
+
+        <div class="grid-stack-item">
+          <div class="grid-stack-item-content">
+            <div id="consoleArea">Code</div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" id="saveLayout">Save</button>
+      <button type="button" id="runButton">Run</button>
+    </div>
+
+    <script src="gridstack-all.js"></script>
+    <script src="main.js"></script>
+  </body>
 </html>
