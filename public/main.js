@@ -118,33 +118,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
   editor.getWrapperElement().addEventListener("focus", function () {
     editorarea.dispatchEvent(new Event('focus'));
   });
-
-  const islower=(x)=>{
-
-
-    if(x>='a' && x<='z'){
-
-      return true;
-    }
-
-    return false;
-  }
-
-    const isnum=(x)=>{
+  /*  Step 2: Create Main Detection Function
+  // Create a function called detectAndSetLanguage that will:
+  
+  // Check data attributes first
+  
+  // Check shebang if no attributes
+  
+  // Check file extension if available
+  
+  // Set the language mode*/
 
 
-    if(x>='0' && x<='9'){
-
-      return true;
-    }
-
-    return false;
-  }
-
-    const isupper=(x)=>{
+  const islower = (x) => {
 
 
-    if(x>='A' && x<='Z'){
+    if (x >= 'a' && x <= 'z') {
 
       return true;
     }
@@ -152,14 +141,36 @@ document.addEventListener("DOMContentLoaded", function (event) {
     return false;
   }
 
-    const isspecial=(x)=>{
+  const isnum = (x) => {
 
 
-    const arr=['!','@','#','$','%','&','*','^','/'];
+    if (x >= '0' && x <= '9') {
 
-    for(let i=0 ;i<arr.length;i++){
+      return true;
+    }
 
-      if(arr[i]===x){
+    return false;
+  }
+
+  const isupper = (x) => {
+
+
+    if (x >= 'A' && x <= 'Z') {
+
+      return true;
+    }
+
+    return false;
+  }
+
+  const isspecial = (x) => {
+
+
+    const arr = ['!', '@', '#', '$', '%', '&', '*', '^', '/'];
+
+    for (let i = 0; i < arr.length; i++) {
+
+      if (arr[i] === x) {
 
         return true;
       }
@@ -167,289 +178,318 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     return false;
   }
- const removewhitespaces=(s)=>{
-   let strin="";
 
-   for(let i=0;i<s.length;i++){
 
-     if(islower(s[i]) || isupper(s[i]) || isnum(s[i]) || isspecial(s[i])){
 
-        strin+=s[i];
-     }
-   }
-  return strin;
- }
- const f=(s)=>{
-   s=s.toLowerCase();
-   
-   return s;
- }
- const language=editorarea.dataset.language;
- const filex=editorarea.dataset.filename;
- const lower=f(value);
- if(language){
+  const detectAndSetLanguage = () => {
 
- try {
-        editor.setOption("mode",language);
-      } catch (error) {
-        console.log(error);
-      }
-   
-    }
-    let stri="";
-   for(let i=0;i<lower.length;i++){
-   stri+=lower[i];
-   if(stri==="#!"){
-     let t="";
-     for(let j=i;j<lower.length;j++){
-      t+=lower[j];
-     if(t==="/opt/homebrew/bin/php"){
-      try {
-        editor.setOption("mode","php");
-      } catch (error) {
-        console.log(error);
-      }
-     }
+    const language = editorarea.dataset.language;
+    const filex = editorarea.dataset.filename;
+    const text = editorarea.value;
+    const modex = editorarea.dataset.mode;
+    const arr = text.split('\n');
+    let string = "";
 
-     if(t==="/usr/bin/"){
-      
-        if(t==="php"|| t==="php7.4"||t==="php8.2"||t==="php5"|| t==="php7"||t==="php8"){
-          try {
-        editor.setOption("mode","php");
-      } catch (error) {
-        console.log(error);
-      }
-       }
+    if (arr.length === 0) {
 
-          if(t==="python"||t==="python2"||t==="python3"){
-          try {
-        editor.setOption("mode","python");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-      
-
-        if(t==="bash"||t==="sh"||t==="zsh"||t==="fish"||t==="dash"){
-          try {
-        editor.setOption("mode","shell");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-        if(t==="node"||t==="node16"){
-          try {
-        editor.setOption("mode","javascript");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-         if(t==="perl"){
-          try {
-        editor.setOption("mode","perl");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-         if(t==="ruby"){
-          try {
-        editor.setOption("mode","ruby");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-
-         if(t==="php"|| t==="php7.4"||t==="php8.2"||t==="php5"|| t==="php7"||t==="php8"){
-          try {
-        editor.setOption("mode","php");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-
-         if(t==="lua"){
-          try {
-        editor.setOption("mode","lua");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-
-         if(t==="awk"){
-          try {
-        editor.setOption("mode","awk");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-
-         if(t==="sed"){
-          try {
-        editor.setOption("mode","php");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-         if(t==="php"|| t==="php7.4"||t==="php8.2"||t==="php5"|| t==="php7"||t==="php8"){
-          try {
-        editor.setOption("mode","php");
-      } catch (error) {
-        console.log(error);
-      }
-       }
-       
-  }
-
-  else if(t==="/usr/bin/env"){
-      let p=removewhitespaces(t);
-    if(p===" php"){
-  try {
-        editor.setOption("mode","php");
-      } catch (error) {
-        console.log(error);
-      }
-
+      return;
     }
 
-      
-    if(p===" python"){
-  try {
-        editor.setOption("mode","python");
-      } catch (error) {
-        console.log(error);
+    for (let i = 0; i < arr[0].length; i++) {
+      if (islower(arr[0][i]) || isupper(arr[0][i]) || isnum(arr[0][i]) || isspecial(arr[0][i])) {
+        string += arr[0][i];
       }
-
     }
-
-       
-    if(p===" node"){
-  try {
-        editor.setOption("mode","javascript");
-      } catch (error) {
-        console.log(error);
-      }
-
-    }
-       
-    if(p===" ruby"){
-  try {
-        editor.setOption("mode","ruby");
-      } catch (error) {
-        console.log(error);
-      }
-
-    }
- 
-    if(p===" bash"){
-  try {
-        editor.setOption("mode","shell");
-      } catch (error) {
-        console.log(error);
-      }
-
-    }
-
-  }
-
   
- else if(t==="/bin/"){
-  if(t==="bash" || t==="dash"|| t==="zsh" || t==="fish"){
-  try {
-        editor.setOption("mode","shell");
-      } catch (error) {
-        console.log(error);
-      }
-
-    }
-       
- }
-
-
- else if(t==="/usr/local/bin/"){
-
-   if(t==="php"){
-
-    try {
-
-      editor.setOption("mode","php")
-      
-    } catch (error) {
-      
-    }
-   }
-
-    if(t==="python3"){
-
-    try {
-
-      editor.setOption("mode","pyhton")
-      
-    } catch (error) {
-      
-    }
-   }
- }
-  
- 
-  
- }
-
-
-}
-  
- else if(stri==="C:/"){
-    let x=" ";
-   for(let j=i;j<lower.size();j++){
-    x+=lower[i];
-     if(x==="Python39/python.exe"){
-
+    if (language) {
 
       try {
-
-        editor.setOption("mode","python")
-        
+        editor.setOption("mode", language);
       } catch (error) {
         console.log(error);
       }
-     }
+
+      return;
+    }
 
 
-      if(x==="Python39/python.exe"){
-
+    if (!language && modex) {
 
       try {
-
-        editor.setOption("mode","python")
-        
+        editor.setOption("mode", modex)
       } catch (error) {
-        console.log(error);
+
       }
-     }
-
-     else if(x==="php/php.exe"){
-
-      try {
-
-        editor.setOption("mode","php")
-        
-      } catch (error) {
-        console.log(error);
-      }
-
-     }
-
-   }
-
-
-  }
-
-  
-
-  
-  }
+      return;
+    }
 
  
-  
+    if (!language) {
+      if (string[0] === '#' && string[1] === '!') {
+        if (string.length === 2) {
+          console.log("Invalid");
+          return;
+        }
+        const t = string.substring(2, string.length)
+
+        let g = t.length - 1;
+        while (g >= 2) {
+          if (t[g] === '/') {
+
+            break;
+          }
+          g--;
+        }
+
+        if (g < 0) {
+
+          return;
+        }
+
+        let k = "";
+        for (let j = g; j < t.length; j++) {
+
+          if (islower(t[j]) || isupper(t[j]) || isnum(t[j])) {
+            k += t[j];
+          }
+        }
+        k = k.toLowerCase();
+        let l = "";
+        for (let j = 0; j < k.length; j++) {
+
+          if (islower(k[j])) {
+            l += k[j];
+          }
+        }
+
+
+        if (l === "python") {
+          try {
+            editor.setOption("mode", "python")
+          } catch (error) {
+            console.log(error);
+          }
+          return;
+        }
+
+        if (l === "php") {
+
+          try {
+            editor.setOption("mode", "php")
+          } catch (error) {
+            console.log(error);
+          }
+
+          return;
+        }
+        if (l === "node" || l === "nodejs") {
+          try {
+            editor.setOption("mode", "javascript")
+          } catch (error) {
+            console.log(error);
+          }
+
+          return;
+        }
+
+        if (l === "bash" || l === "zsh" || l === "fish" || l === "dash" || l === "sh") {
+
+          try {
+            editor.setOption("mode", "shell")
+          } catch (error) {
+            console.log(error);
+          }
+
+          return;
+        }
+
+        if (l === "perl") {
+
+          try {
+            editor.setOption("mode", "perl")
+          } catch (error) {
+            console.log(error);
+          }
+
+          return;
+        }
+
+        if (l === "ruby") {
+
+          try {
+            editor.setOption("mode", "ruby")
+          } catch (error) {
+            console.log(error);
+          }
+
+          return;
+        }
+
+        if (l === "lua") {
+
+          try {
+            editor.setOption("mode", "lua")
+          } catch (error) {
+            console.log(error);
+          }
+
+          return;
+        }
+
+
+      }
+
+
+      if (string[0] !== '#' && string[1] !== '!') {
+
+        if (filex) {
+
+          let y = "";
+
+
+          let h = filex.length - 1;
+
+          while (h >= 0) {
+            if (filex[h] === '.') {
+
+              break;
+            }
+            h--;
+          }
+          let r = "";
+          if (h >= 0) {
+            r = filex.substring(h + 1, filex.length);
+          }
+         
+
+          if(!r){
+
+            return;
+          }
+          if (r === "js") {
+
+
+            try {
+              editor.setOption("mode", "javascript")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+
+
+
+          }
+
+          if (r === "py") {
+
+            try {
+              editor.setOption("mode", "python")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+
+          }
+
+          if (r === "php") {
+            try {
+              editor.setOption("mode", "php")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+          }
+
+          if (r === "html" || r==="htm") {
+            try {
+              editor.setOption("mode", "html")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+          }
+
+          if (r === "css") {
+            try {
+              editor.setOption("mode", "css")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+          }
+
+          if (r === "json" || r === "jsx") {
+            try {
+              editor.setOption("mode", "javascript")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+          }
+
+          if (r === "xml") {
+            try {
+              editor.setOption("mode", "xml")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+          }
+          if (r === "rb") {
+            try {
+              editor.setOption("mode", "ruby")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+          }
+          if (r === "pl") {
+            try {
+              editor.setOption("mode", "perl")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+          }
+          if (r === "ts" || r === "tsx") {
+            try {
+              editor.setOption("mode", "typescript")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+          }
+          if (r === "sh" || r === "bash") {
+            try {
+              editor.setOption("mode", "shell")
+            } catch (error) {
+              console.log(error);
+            }
+
+            return;
+          }
+
+
+
+        }
+
+      }
+    }
+
+  }
+
+
+  detectAndSetLanguage();
 
 });
 
