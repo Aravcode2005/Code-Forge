@@ -1,5 +1,4 @@
 
-
 document.addEventListener("DOMContentLoaded", function (event) {
   const grid = GridStack.init();
   console.log("Gridstack initialized");
@@ -7,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const area = document.getElementById("consoleArea");
   const editorarea = document.getElementById("editArea");
   const value = editorarea.value;
-
   const ename = editorarea.name;
   const placeholder = editorarea.placeholder;
   const isDisabled = editorarea.disabled;
@@ -51,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     matchBrackets: true,
     autoCloseBrackets: true,
   });
+
 
   window.codeEditor = editor;
   const savex = document.getElementById("saveLayout");
@@ -118,17 +117,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   editor.getWrapperElement().addEventListener("focus", function () {
     editorarea.dispatchEvent(new Event('focus'));
   });
-  /*  Step 2: Create Main Detection Function
-  // Create a function called detectAndSetLanguage that will:
   
-  // Check data attributes first
-  
-  // Check shebang if no attributes
-  
-  // Check file extension if available
-  
-  // Set the language mode*/
-
 
   const islower = (x) => {
 
@@ -376,9 +365,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
 
             return;
-
-
-
           }
 
           if (r === "py") {
@@ -487,9 +473,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
   }
-
-
   detectAndSetLanguage();
-
 });
 

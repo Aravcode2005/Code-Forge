@@ -1,9 +1,9 @@
 .CodeMirror {
   font-family: monospace;
-  height: 1000px;
+  height: 10000px;
   color: #000;
   direction: ltr;
-  width: 1000px;
+  width: 10000px;
 }
 .CodeMirror-lines {
   padding: 4px 0;

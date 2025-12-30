@@ -1,6 +1,7 @@
 body {
   background-color: white;
   font-family: Arial, sans-serif;
+  align-items: center;
 }
 #header {
   color: black;
@@ -16,15 +17,20 @@ body {
   height: 200px;
   align-items:center;
   flex-direction: column-reverse;
+  align-items: baseline;
 }
 
  .grid-stack {
-  background-color:red;
+  background-color:antiquewhite;
   border:salmon dotted;
   border-radius: 8px;
-  margin-bottom: 20px;
-  height: 3000px;
-  width: 3000px;
+  margin-bottom: 0px;
+  height: 500px;
+  width: 1000px;
+  margin-left: 500px;
+  margin-right: 500px;
+   margin-bottom: 500px;
+   margin-right:1500px ;
 } 
 .grid-stack-item-content {
   background-color: black;
@@ -32,23 +38,32 @@ body {
   border-radius: 6px;
   overflow: hidden;
   color:whitesmoke;
-   height:1500px;
-   min-width:1500px;
+   height:250px;
+   width:500px;
+   font-size: large;
+   
 }
-
-#runButton,
+#challengesContainer{
+  background-color: red;
+  color:white;
+  height: 500px;
+  width: 1000px;
+  font-size:30px ;
+}
+ #runButton,
 #saveLayout {
  height: fit-content;
   width:fit-content;
   border: none;
   border-radius: 6px;
-  font-size: 46px;
+  font-size: 100px;
   cursor: pointer;
   background-color:lightcoral;
   color: white;
-  margin-top: 0%;
-  
-  motion:path();
+  margin-bottom:0%;
+ padding-bottom: 0%;
+ align-items: baseline;
+ margin: auto;
 }
 
 #resetButton {
@@ -60,8 +75,9 @@ body {
   cursor: pointer;
   background-color:lightcoral;
   color: white;
-  margin-top: 0%;
-  
-  motion: path();
-
-}
+  margin-bottom: 0%;
+  padding-bottom: 0%;
+  align-items: baseline;
+  margin: auto;
+  font-size: 100px;
+} 
